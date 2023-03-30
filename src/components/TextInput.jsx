@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Textarea, Button, useToast } from "@chakra-ui/react";
 
-const TextInput = () => {
+const TextInput = ({ refactorCode }) => {
     const [text, setText] = useState("");
 
     const toast = useToast();
@@ -16,7 +16,7 @@ const TextInput = () => {
                 isClosable: false,
             });
         } else {
-            console.log(text);
+            refactorCode(text);
         }
     };
 
@@ -40,7 +40,7 @@ const TextInput = () => {
                 width="100%"
                 onClick={submitText}
             >
-                Explain Code
+                Refactor My Code
             </Button>
         </>
     );
