@@ -28,7 +28,7 @@ const TextInput = ({ refactorCode }) => {
                 placeholder="Paste your code here"
                 padding={4}
                 marginTop={6}
-                height={200}
+                height={400}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
             />

@@ -3,6 +3,7 @@ import { Container, Box } from "@chakra-ui/react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import TextInput from "./components/TextInput";
+import AnswerModal from "./components/AnswerModal";
 
 const App = () => {
     const [keywords, setKeywords] = useState("");
@@ -23,7 +24,7 @@ const App = () => {
                 model: "text-davinci-003",
                 prompt: "Refactor this code\n\n" + text + "",
                 temperature: 0.5,
-                max_tokens: 200,
+                max_tokens: 500,
                 frequency_penalty: 0.8,
             }),
         };
@@ -33,9 +34,13 @@ const App = () => {
         );
         const json = await response.json();
         const data = json.choices[0].text.trim();
-        console.log(data);
+        //console.log(data);
         setKeywords(data);
         setIsLoading(false);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
     };
 
     return (
@@ -45,6 +50,12 @@ const App = () => {
                 <TextInput refactorCode={refactorCode} />
                 <Footer />
             </Container>
+            <AnswerModal
+                keywords={keywords}
+                isOpen={isOpen}
+                isLoading={isLoading}
+                closeModal={closeModal}
+            />
         </Box>
     );
 };
