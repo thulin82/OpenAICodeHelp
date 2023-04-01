@@ -11,7 +11,7 @@ import {
     CircularProgress,
 } from "@chakra-ui/react";
 
-const AnswerModal = ({ keywords, isOpen, isLoading, closeModal }) => {
+const AnswerModal = ({ answers, isOpen, isLoading, closeModal }) => {
     return (
         <>
             <Modal isOpen={isOpen} onClose={closeModal} size="6xl">
@@ -34,7 +34,7 @@ const AnswerModal = ({ keywords, isOpen, isLoading, closeModal }) => {
                                 display="block"
                                 whiteSpace="pre"
                                 overflowX="auto"
-                                children={keywords}
+                                children={answers}
                             />
                         )}
                     </ModalBody>

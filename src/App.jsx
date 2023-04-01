@@ -6,7 +6,7 @@ import TextInput from "./components/TextInput";
 import AnswerModal from "./components/AnswerModal";
 
 const App = () => {
-    const [keywords, setKeywords] = useState("");
+    const [answers, setAnswers] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -35,7 +35,7 @@ const App = () => {
         const json = await response.json();
         const data = json.choices[0].text.trim();
         //console.log(data);
-        setKeywords(data);
+        setAnswers(data);
         setIsLoading(false);
     };
 
@@ -51,7 +51,7 @@ const App = () => {
                 <Footer />
             </Container>
             <AnswerModal
-                keywords={keywords}
+                answers={answers}
                 isOpen={isOpen}
                 isLoading={isLoading}
                 closeModal={closeModal}
