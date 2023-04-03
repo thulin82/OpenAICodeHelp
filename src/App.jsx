@@ -21,8 +21,18 @@ const App = () => {
                 Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
             },
             body: JSON.stringify({
-                model: "text-davinci-003",
-                prompt: "Refactor this code\n\n" + text + "",
+                model: "gpt-3.5-turbo",
+                messages: [
+                    {
+                        role: "system",
+                        content:
+                            "You are a helpful assistant that helps with refactoring code.",
+                    },
+                    {
+                        role: "user",
+                        content: "Refactor this code\n\n" + text + "",
+                    },
+                ],
                 temperature: 0.5,
                 max_tokens: 500,
                 frequency_penalty: 0.8,
@@ -33,8 +43,7 @@ const App = () => {
             options
         );
         const json = await response.json();
-        const data = json.choices[0].text.trim();
-        //console.log(data);
+        const data = json.choices[0].message.content.trim();
         setAnswers(data);
         setIsLoading(false);
     };
